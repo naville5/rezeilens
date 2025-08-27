@@ -1,0 +1,79 @@
+<div class="container-fixed">
+  <div class="modal " data-modal="true" data-modal-disable-scroll="false" id="modification_order_modal" #modalElement>
+    <div class="modal-content pt-7.5 my-[3%] w-full container-fixed px-5 overflow-hidden items-center justify-center"
+      id="modal_settings_content" *ngIf="loading">
+      <app-loading [loading]="loading"></app-loading>
+    </div>
+    <div class="modal-content pt-7.5 my-[3%] w-full container-fixed px-5 overflow-hidden " id="modal_settings_content"
+      *ngIf="!loading && !error">
+      <div class="modal-header p-0 border-0">
+        <div class="container-fixed">
+          <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+            <div class="flex items-center justify-between flex-wrap grow gap-5">
+              <div class="flex flex-col justify-center gap-2">
+                <h1 class="text-xl font-semibold leading-none text-gray-900">
+                  {{ actionType === 'approve' ? 'Approve Exception' : 'Deny Exception' }}
+                </h1>
+
+              </div>
+              <div class="flex items-center gap-2.5">
+                <!-- <button (click)="hide()" class="btn btn-sm btn-light" data-modal-dismiss="true">
+                                  Close
+                              </button> -->
+                <button (click)="hide()" class="btn btn-sm btn-icon btn-light" data-modal-dismiss="true">
+                  <i class="ki-filled ki-cross ">
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body scrollable-y py-0 mb-5 pl-6 pr-3 mr-3" id="modal_settings_body">
+        <form [formGroup]="exceptionUpdateForm" (ngSubmit)="onSubmit()">
+          <div class="flex grow gap-5 lg:gap-7.5">
+            <div class="flex flex-col items-stretch grow gap-5 lg:gap-7.5">
+
+
+
+              <div class="card pb-2.5   ">
+                <div class="card-header" id="basic_settings">
+                  <h3 class="card-title">Comments</h3>
+                  <div class="flex items-center gap-2">
+
+                  </div>
+                </div>
+                <div class="card-body grid gap-5">
+                  <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                    <label class="form-label max-w-56">Add:</label>
+                    <!-- Use formControlName to bind to the form control directly -->
+                    <textarea class="textarea" formControlName="exceptionComments"></textarea>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card dark:bg-[transparent] dark:border-[transparent]">
+                <div class="card-body flex flex-col gap-7.5">
+                  <div class="flex justify-end">
+                    <div class="flex items-center justify-center gap-2">
+                      <button (click)="hide()" class="btn btn-light" data-modal-dismiss="true">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        {{ actionType === 'approve' ? 'Approve' : 'Deny' }}
+                      </button>
+                      <app-loading [loading]="loadingIndicator"></app-loading>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-success [message]="message"></app-success>
+<app-error-modal [message]="message"></app-error-modal>

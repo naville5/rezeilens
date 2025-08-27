@@ -1,0 +1,41 @@
+# Node.js dependencies
+/frontend/node_modules/
+
+# Angular build output
+/frontend/dist/
+/frontend/.angular/
+
+# Environment files
+/frontend/.env
+/frontend/*.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE files
+*.swp
+*.swo
+*.sln.docstates
+.vscode/
+.idea/
+
+# ASP.NET build output
+/backend/bin/
+/backend/obj/
+/backend/mvp.api/bin/
+/backend/mvp.api/obj/
+
+# Docker artifacts (optional, depending on setup)
+*.tar
+*.img
+
+# User secrets (if using dotnet user-secrets)
+**/secrets.json
+
+# Docs (if you want to ignore the PDFs)
+# (Optional - remove this if you DO want them uploaded)
+# /docs/*.pdf

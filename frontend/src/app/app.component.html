@@ -1,0 +1,16 @@
+<!-- <app-sidebar *ngIf="showLayout"></app-sidebar> -->
+<app-sidebar *ngIf="showLayout"
+	class="dark [&amp;.dark]:bg-coal-600 bg-light border-r border-r-gray-200 dark:border-r-coal-100 fixed top-0 bottom-0 z-20 hidden lg:flex flex-col items-stretch shrink-0"
+	data-drawer="true" data-drawer-class="drawer drawer-start top-0 bottom-0" data-drawer-enable="true|lg:false"
+	id="sidebar"></app-sidebar>
+
+<div [ngClass]="showLayout ? 'wrapper flex grow flex-col' : 'grow flex items-center justify-center'">
+	<app-header *ngIf="showLayout"></app-header>
+	<main class="grow content pt-5 pb-5" id="content" role="content"  [class.website-background]="isWebsiteRoute"
+  [style.background-color]="isWebsiteRoute ? '#fefaf0' : 'transparent'">
+		<router-outlet></router-outlet>
+	</main>
+	<app-footer *ngIf="showLayout"></app-footer>
+</div>
+
+<app-search-modal></app-search-modal>

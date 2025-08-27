@@ -1,0 +1,106 @@
+<!-- begin: container -->
+<div class="container-fixed">
+  <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+    <div class="flex flex-col justify-center gap-2">
+      <h1 class="text-xl font-semibold leading-none text-gray-900">
+        New Submission
+      </h1>
+      <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
+        Complete the form.
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end: container -->
+
+
+
+<!-- Risk Exception Form Container -->
+<div class="container-fixed">
+  <div class="flex grow gap-5 lg:gap-7.5">
+    <div class="flex flex-col items-stretch grow gap-5 lg:gap-7.5">
+      <div class="card pb-2.5">
+        <div class="card-header" id="risk_exception_header">
+          <h3 class="card-title">Submit Risk Exception</h3>
+        </div>
+        <div class="card-body grid gap-5">
+          <form [formGroup]="riskExceptionForm" (ngSubmit)="submitRiskException()">
+
+            <!-- Policy Dropdown -->
+            <div class="w-full flex flex-col gap-2.5">
+              <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label max-w-56">Select Policy</label>
+                <select class="input" formControlName="policyId"
+                  [ngClass]="{ 'border-danger': submitted && f['policyId'].errors }">
+                  <option value="">-- Select Policy --</option>
+                  <option *ngFor="let policy of policies" [value]="policy.id">
+                    {{ policy.policyTitle }}
+                  </option>
+                </select>
+              </div>
+              <div *ngIf="submitted && f['policyId'].errors" class="invalid-feedback">
+                <div *ngIf="f['policyId'].errors['required']">Policy selection is required</div>
+              </div>
+            </div>
+            <br> <!-- Reason -->
+            <div class="w-full">
+              <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label max-w-56">Reason</label>
+                <textarea class="textarea" placeholder="Enter reason" formControlName="reason"
+                  [ngClass]="{ 'border-danger': submitted && f['reason'].errors }"></textarea>
+              </div>
+              <div *ngIf="submitted && f['reason'].errors" class="invalid-feedback">
+                <div *ngIf="f['reason'].errors['required']">Reason is required</div>
+              </div>
+            </div>
+            <br>
+            <!-- Duration in Days -->
+            <div class="w-full">
+              <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label max-w-56">Duration (Days)</label>
+                <input type="number" class="input" placeholder="Enter duration in days" formControlName="durationInDays"
+                  [ngClass]="{ 'border-danger': submitted && f['durationInDays'].errors }" />
+              </div>
+              <div *ngIf="submitted && f['durationInDays'].errors" class="invalid-feedback">
+                <div *ngIf="f['durationInDays'].errors['required']">Duration is required</div>
+                <div *ngIf="f['durationInDays'].errors['min']">Duration must be at least 1 day</div>
+              </div>
+            </div>
+            <br>
+            <!-- Risk Rating -->
+            <div class="w-full">
+              <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label max-w-56">Risk Rating</label>
+                <select class="input" formControlName="riskRating"
+                  [ngClass]="{ 'border-danger': submitted && f['riskRating'].errors }">
+                  <option value="">-- Select Risk Rating --</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </select>
+              </div>
+              <div *ngIf="submitted && f['riskRating'].errors" class="invalid-feedback">
+                <div *ngIf="f['riskRating'].errors['required']">Risk rating is required</div>
+              </div>
+            </div>
+            <br>
+            <!-- Submit Button -->
+            <div class="flex items-center justify-end gap-3">
+              <span *ngIf="loading">
+                <app-loading [loading]="loading"></app-loading>
+              </span>
+              <button [disabled]="loading" class="btn btn-primary">Submit</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <app-terms-modal [pdfUrl]="pdfUrl"></app-terms-modal> -->
+<app-success [message]="message"></app-success>
+<app-error-modal [message]="message"></app-error-modal>

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Rezilens\\Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B357A614-E460-4AEA-B1AE-571967BF5896}|RezilensMVP.Api\\RezilensMVP.Api.csproj|c:\\rezilens\\project\\rezilensmvp.api\\controllers\\policycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B357A614-E460-4AEA-B1AE-571967BF5896}|RezilensMVP.Api\\RezilensMVP.Api.csproj|solutionrelative:rezilensmvp.api\\controllers\\policycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PolicyController.cs",
+              "DocumentMoniker": "C:\\Rezilens\\Project\\RezilensMVP.Api\\Controllers\\PolicyController.cs",
+              "RelativeDocumentMoniker": "RezilensMVP.Api\\Controllers\\PolicyController.cs",
+              "ToolTip": "C:\\Rezilens\\Project\\RezilensMVP.Api\\Controllers\\PolicyController.cs",
+              "RelativeToolTip": "RezilensMVP.Api\\Controllers\\PolicyController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAgwJMAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T22:25:36.194Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

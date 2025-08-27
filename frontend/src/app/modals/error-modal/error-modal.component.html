@@ -1,0 +1,44 @@
+<!-- <button class="btn btn-primary" data-modal-toggle="#modal_2">
+    Show Modal
+   </button> -->
+   <div class="modal" data-modal="true" id="error_modal">
+    <div class="modal-content modal-center max-w-[500px] w-full">
+     <div class="modal-header justify-end border-0 pt-5">
+      <button class="btn btn-sm btn-icon btn-light" data-modal-dismiss="true" (click)="hide()">
+       <i class="ki-filled ki-cross">
+       </i>
+      </button>
+     </div>
+     <div class="modal-body flex flex-col items-center pt-0 pb-10">
+        <div class="mb-16">
+            <img alt="image" class="dark:hidden max-h-[160px]" src="assets/media/illustrations/20.svg"/>
+            <img alt="image" class="light:hidden max-h-[160px]" src="assets/media/illustrations/20-dark.svg"/>
+           </div>
+           <!-- <span class="badge badge-primary badge-outline mb-3">
+            500 Error
+           </span> -->
+           <h3 class="text-2.5xl font-semibold text-gray-900 text-center mb-2">
+            Error!
+           </h3>
+           <!-- <div class="text-md font-medium text-center text-gray-600 mb-10">
+            Something went wrong! Please try again later. 
+           </div> -->
+           <!-- <a class="btn btn-primary flex justify-center" href="html/demo1.html">
+            Back to Home
+           </a> -->
+      <div class="text-2sm font-medium text-center text-gray-600 mb-7">
+        Something went wrong! Please try again later.
+        <br/>
+        {{ getMessage }}
+      </div>
+      <!-- <div class="flex justify-center mb-2">
+       <a class="btn btn-primary flex justify-center" href="html/demo1.html">
+        Show me around
+       </a>
+      </div>
+      <a class="text-2sm font-medium text-gray-700 hover:text-primary py-3" href="html/demo1.html">
+       Skip the tour
+      </a> -->
+     </div>
+    </div>
+   </div>

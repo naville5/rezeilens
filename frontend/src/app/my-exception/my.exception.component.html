@@ -1,0 +1,293 @@
+<!-- begin: container -->
+<div class="container-fixed">
+  <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+    <div class="flex flex-col justify-center gap-2">
+      <h1 class="text-xl font-semibold leading-none text-gray-900">
+        My Risk Exceptions
+      </h1>
+      <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
+        All Exceptions Submitted.
+      </div>
+    </div>
+    <!-- <div class="flex items-center gap-2.5">
+      <a class="btn btn-sm btn-light" href="#">
+       View Roles
+      </a>
+     </div> -->
+  </div>
+</div>
+<!-- end: container -->
+<!-- begin: container -->
+<div class="container-fixed">
+  <div class="grid gap-5 lg:gap-7.5">
+    <div class="card card-grid min-w-full ">
+      <div class="card-header py-5 flex-wrap">
+        <h3 class="card-title">
+          My Policies
+        </h3>
+        <div class="flex gap-6">
+          <div class="relative">
+            <i
+              class="ki-filled ki-magnifier leading-none text-md text-gray-500 absolute top-1/2 left-0 -translate-y-1/2 ml-3">
+            </i>
+            <input class="input input-sm pl-8  " [(ngModel)]="searchTerm" (input)="onSearch()"
+              placeholder="Search policys" type="text" />
+          </div>
+          <!-- <label class="switch switch-sm">
+             <input class="order-2" name="check" type="checkbox" value="1"/>
+             <span class="switch-label order-1">
+              Active Users
+             </span>
+            </label> -->
+        </div>
+      </div>
+      <div class="card-body ">
+        <div data-datatable="true" data-datatable-page-size="10">
+          <div class="scrollable-x-auto">
+            <table class="table table-border" data-datatable-table="true" id="members_table">
+              <thead>
+                <tr>
+                  <th class="w-[60px] text-center">
+                    <!-- <input class="checkbox checkbox-sm" data-datatable-check="true"
+                                            type="checkbox" /> --> S.No
+                  </th>
+                  <th class="w-[225px]">
+                    <span class="sort asc">
+                      <span class="sort-label">
+                        Policy Title
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[800px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Policy Description
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[225px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Reason
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[225px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Duration (Days)
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[225px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Risk Rating
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[225px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Submitted Date
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[225px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Status
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+
+                  <th class="w-[225px]">
+                    <span class="sort">
+                      <span class="sort-label">
+                        Admin Comments
+                      </span>
+                      <span class="sort-icon">
+                      </span>
+                    </span>
+                  </th>
+                  <th class="w-[60px]" *ngIf="userType === Role.Admin">
+                    Approve
+                  </th>
+                  <th class="w-[60px]" *ngIf="userType === Role.Admin">
+                    Reject
+                  </th>
+                </tr>
+              </thead>
+              <!-- Loader Body -->
+              <tbody *ngIf="loading">
+                <tr>
+                  <td [attr.colspan]="7">
+                    <div class="loader-container" style="margin: 0 auto; display: table;">
+                      <app-loading [loading]="loading"></app-loading>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <!-- Error Body -->
+              <tbody *ngIf="error">
+                <tr>
+                  <td [attr.colspan]="7">
+                    Error loading data
+                  </td>
+                </tr>
+              </tbody>
+              <!-- No Records Body -->
+              <tbody *ngIf="filteredExceptionData.length === 0">
+                <tr>
+                  <td [attr.colspan]="7">
+                    No records found
+                  </td>
+                </tr>
+              </tbody>
+              <!-- Records Body -->
+              <tbody *ngIf="!loading && !error && filteredExceptionData.length > 0">
+                <tr *ngFor="let exception of paginatedData; let i = index">
+                  <td class="text-center">
+                    <!-- <input class="checkbox checkbox-sm" data-datatable-row-check="true"
+                                            type="checkbox" value="1" /> --> {{i + 1}}
+                  </td>
+                  <!-- <td class="">
+                                        <div class="flex items-center gap-2.5">
+                                            <div class="flex flex-col gap-0.5">
+                                                {{ exception.id }}
+                                            </div>
+                                        </div>
+                                    </td> -->
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="flex flex-col gap-0.5">
+                        {{ exception.policyTitle }}
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="flex flex-col gap-0.5">
+                        {{ exception.policyDescription }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="flex flex-col gap-0.5">
+                        {{ exception.reason }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="flex flex-col gap-0.5">
+                        {{ exception.durationInDays }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="flex flex-col gap-0.5">
+                        {{ exception.riskRating }}
+                      </div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="flex flex-col gap-0.5">
+                        {{ exception.submittedDate | date: 'MMMM d, y' }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge badge-sm badge-outline" [ngClass]="
+          exception.isApproved === 1 ? 'badge-success' :
+          exception.isApproved === 2 ? 'badge-danger' :
+          'badge-warning'
+        ">
+                      {{ exception.isApproved === 1 ? 'Approved' :
+                      exception.isApproved === 2 ? 'Rejected' :
+                      'Pending' }}
+                    </span>
+                  </td>
+
+
+
+
+
+                  <td>
+                    <div class="flex flex-col gap-0.5">
+                      {{exception.adminComments }}
+                    </div>
+
+                  </td>
+
+
+                  <td class="text-center align-middle" *ngIf="userType === Role.Admin">
+                    <button (click)="openExceptionModal(exception.riskExceptionId, 'approve')"
+                      class="btn btn-sm btn-icon btn-clear btn-light">
+                      <i class="ki-filled ki-notepad-edit"></i>
+                    </button>
+                  </td>
+
+                  <td class="text-center align-middle" *ngIf="userType === Role.Admin">
+                    <button (click)="openExceptionModal(exception.riskExceptionId, 'deny')"
+                      class="btn btn-sm btn-icon btn-clear btn-light">
+                      <i class="ki-filled ki-cross"></i>
+                    </button>
+                  </td>
+
+
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer flex justify-between items-center text-gray-600 text-2sm font-medium">
+            <div class="flex items-center gap-2">
+              Show
+              <select class="select select-sm w-16" (change)="onPageSizeChange($event)">
+                <option *ngFor="let size of [10, 25, 50]" [value]="size">{{ size }}</option>
+              </select>
+              per page
+            </div>
+            <div class="pagination">
+              <button class="btn" (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1"><i
+                  class="ki-outline ki-black-left"></i></button>
+              <button class="btn" *ngFor="let page of getPages()" (click)="onPageChange(page)"
+                [ngClass]="{'active': page === currentPage}">
+                {{ page }}
+              </button>
+              <button class="btn" (click)="onPageChange(currentPage + 1)"
+                [disabled]="currentPage === getTotalPages()"><i class="ki-outline ki-black-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end: container -->
+
+<app-exception-modal
+  #exceptionModal
+  [exceptionId]="selectedExceptionId"
+  (statusUpdated)="onExceptionUpdated()">
+</app-exception-modal>

@@ -1,0 +1,84 @@
+<!-- begin: container -->
+<div class="container-fixed">
+  <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+    <div class="flex flex-col justify-center gap-2">
+      <h1 class="text-xl font-semibold leading-none text-gray-900">
+        New Policy
+      </h1>
+      <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
+        Complete the form.
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end: container -->
+
+<!-- begin: container -->
+<div class="container-fixed">
+  <div class="flex grow gap-5 lg:gap-7.5">
+    <div class="flex flex-col items-stretch grow gap-5 lg:gap-7.5">
+      <div class="card pb-2.5 ">
+        <div class="card-header" id="basic_settings">
+          <h3 class="card-title">
+            Create
+          </h3>
+        </div>
+        <div class="card-body grid gap-5">
+          <form action="#" class="card-body flex flex-col gap-5 p-10" id="policy_form" [formGroup]="policyForm"
+            (ngSubmit)="createPolicy()">
+            <div class="w-full">
+              <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label flex items-center gap-1 max-w-56">
+                  Title
+                </label>
+                <input class="input" type="text" placeholder="Enter Title" formControlName="title"
+                  [ngClass]="{ 'border-danger': submitted && f['title'].errors }  " />
+              </div>
+              <div *ngIf="submitted && f['title'].errors" class="flex flex-wrap gap-3.5 invalid-feedback">
+                <label class="form-label flex items-center gap-1 max-w-56"></label>
+                <div *ngIf="f['title'].errors['required']">Title is required</div>
+              </div>
+            </div>
+            <div class="w-full">
+              <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                <label class="form-label max-w-56">
+                  Description
+                </label>
+                <div class="flex flex-col items-start grow gap-7.5 w-full">
+                  <textarea class="input resize-none h-24 p-2" placeholder="Description" formControlName="description"
+                    [ngClass]="{ 'border-danger': submitted && f['description'].errors }"></textarea>
+                </div>
+              </div>
+
+              <div *ngIf="submitted && f['description'].errors" class="flex flex-wrap gap-3.5 invalid-feedback">
+                <label class="form-label flex items-center gap-1 max-w-56"></label>
+                <div *ngIf="f['description'].errors['required']">Description is required</div>
+                <div *ngIf="f['description'].errors['maxlength']">Description is too long</div>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="flex items-center justify-end gap-3">
+              <span *ngIf="loading">
+                <app-loading [loading]="loading"></app-loading>
+              </span>
+
+              <button [disabled]="loading" class="btn btn-primary">
+                Create Policy
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end: container -->
+
+
+<app-success [message]="message"></app-success>
+<app-error-modal [message]="message"></app-error-modal>

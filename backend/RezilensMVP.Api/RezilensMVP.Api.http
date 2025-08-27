@@ -1,0 +1,6 @@
+@RezilensMVP.Api_HostAddress = http://localhost:5229
+
+GET {{RezilensMVP.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

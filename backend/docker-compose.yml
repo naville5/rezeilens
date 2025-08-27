@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: rezilens-sql
+    environment:
+      MSSQL_SA_PASSWORD: "Str0ngP@ssw0rd!2025"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+      - ./DbScripts:/docker-entrypoint-initdb.d  # Mount DbScripts directory here
+    networks:
+      - rezilens-network
+
+  api:
+    build: .
+    container_name: rezilens-api
+    ports:
+      - "9090:8080"   # API now available at http://localhost:9090
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=rezilens_mvp_db;User Id=sa;Password=Str0ngP@ssw0rd!2025;TrustServerCertificate=True;"
+      ASPNETCORE_ENVIRONMENT: Development
+      DOTNET_ENV_DOCKER: "true"
+      JWT__Secret: "ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM"
+      JWT__ValidIssuer: "http://localhost:9090"
+      JWT__ValidAudience: "http://localhost:9090"
+    depends_on:
+      - sqlserver
+    networks:
+      - rezilens-network
+
+networks:
+  rezilens-network:
+    driver: bridge
+
+volumes:
+  sql_data:

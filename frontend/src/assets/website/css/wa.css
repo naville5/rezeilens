@@ -1,0 +1,70 @@
+/* styles.css */
+
+.whatsapp-widget {
+    position: fixed;
+    bottom: 0px;  /* Distance from the bottom of the screen */
+    left: 20px;   /* Distance from the right side of the screen */
+    z-index: 1000;
+}
+
+.whatsapp-button {
+    /*background-color: #25D366; /* WhatsApp green color */
+    color: white;
+    /*padding: 15px;*/
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    /*box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);*/
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+/*.whatsapp-button:hover {
+/*    background-color: #25D366; /* Darker green when hovering */
+/*} */
+
+.whatsapp-button img {
+    color: #25D366;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.whatsapp-button span {
+    font-size: 16px;
+    font-weight: bold;
+}
+ 
+ 
+/* Mdeia query for samller screens like mobile devices */
+@media (max-width: 768px){
+    .whatsapp-widget{
+            position: fixed;
+            bottom: 8px;  /* Distance from the bottom of the screen */
+            left: 20px;   /* Distance from the right side of the screen */
+            z-index: 1000;
+    
+    }
+    
+    .whatsapp-button img{
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+}
+
+/* Mdeia query for extra small screens (e.g., phones in portrait mode) */
+@media (max-width: 480px){
+    .whatsapp-widget{
+            position: fixed;
+            bottom: 8px;  /* Distance from the bottom of the screen */
+            left: 20px;   /* Distance from the right side of the screen */
+            z-index: 1000;
+    }
+    
+    .whatsapp-button img{
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+}

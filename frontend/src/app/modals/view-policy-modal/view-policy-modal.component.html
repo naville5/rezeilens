@@ -1,0 +1,83 @@
+<div class="container-fixed">
+  <div class="modal modal-open:!flex" data-modal="true" data-modal-disable-scroll="false" id="view_order_modal"
+    #modalElement>
+    <div class="modal-content pt-7.5 my-[3%] w-full container-fixed px-5 overflow-hidden items-center justify-center"
+      id="modal_settings_content" *ngIf="loading">
+      <app-loading [loading]="loading"></app-loading>
+    </div>
+    <div class="modal-content pt-7.5 my-[3%] w-full container-fixed px-5 overflow-hidden " id="modal_settings_content"
+      *ngIf="!loading && !error">
+      <div class="modal-header p-0 border-0">
+        <div class="container-fixed">
+          <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+            <div class="flex items-center justify-between flex-wrap grow gap-5">
+              <div class="flex flex-col justify-center gap-2">
+                <h1 class="text-xl font-semibold leading-none text-gray-900">
+                  View Policy
+                </h1>
+                <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
+                  Created at {{ policyDetails.createdDate | date: 'MMMM d, y'}}
+                </div>
+              </div>
+              <div class="flex items-center gap-2.5">
+
+                <button (click)="hide()" class="btn btn-sm btn-icon btn-light" data-modal-dismiss="true">
+                  <i class="ki-filled ki-cross">
+                  </i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body scrollable-y py-0 mb-5 pl-6 pr-3 mr-3" id="modal_settings_body">
+        <div class="flex grow gap-5 lg:gap-7.5">
+          <div class="flex flex-col items-stretch grow gap-5 lg:gap-7.5">
+            <div class="card pb-2.5   ">
+              <div class="card-header" id="basic_settings">
+                <h3 class="card-title">Details</h3>
+                <div class="flex items-center gap-2">
+
+                </div>
+              </div>
+              <div class="card-body grid gap-5">
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                  <label class="form-label max-w-56">Title:</label>
+                  <input class="input " disabled value="{{ policyDetails.policyTitle }}" />
+                </div>
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5" style="align-items: center;">
+                  <label class="form-label max-w-56">Description</label>
+                  <textarea class="textarea" disabled>{{ policyDetails.policyDescription }}</textarea>
+                </div>
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5" style="align-items: center;">
+                  <label class="form-label max-w-56">Acknowledged At</label>
+                  <textarea class="textarea" disabled>{{ policyDetails.acknowledgedDate | date: 'MMMM d, y h:mm a' }}</textarea>
+                </div>
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5" style="align-items: center;">
+                  <label class="form-label max-w-56">Acknowledged By</label>
+                  <textarea class="textarea" disabled>{{ policyDetails.acknowledgedByName }}</textarea>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-success [message]="message"></app-success>
+<app-error-modal [message]="message"></app-error-modal>

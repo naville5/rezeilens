@@ -1,0 +1,80 @@
+
+
+<div class="container-fixed ">
+  <div class="flex flex-wrap items-center lg:items-end justify-between gap-5 pb-7.5">
+      <div class="flex flex-col justify-center gap-2">
+          <h1 class="text-xl font-semibold leading-none text-gray-900">
+              Acknowledgements and Exceptions Decisions Report
+          </h1>
+          <div class="flex items-center gap-2 text-sm font-medium text-gray-600">
+              Rezilens Dashboard
+          </div>
+      </div>
+      <div class="flex items-center gap-2.5">
+            <button class="btn btn-sm btn-light" (click)="printTable()">
+                Print
+            </button>
+            <button class="btn btn-sm btn-light" (click)="exportToExcel()">
+              Export To Excel
+            </button>
+             <button class="btn btn-sm btn-light" (click)="exportToCsv()">
+              Export To CSV
+            </button>
+        </div>
+  </div>
+</div>
+
+
+<!-- Services Table -->
+<div class="container-fixed">
+  <div class="card">
+    <div class="card-header flex flex-wrap justify-between items-center gap-4">
+      <h3 class="card-title">Report </h3>
+
+
+    </div>
+    <div class="scrollable-x-auto">
+  <table class="table table-border" data-datatable-table="true" id="meetings_table">
+  <thead>
+    <tr>
+      <th class="w-[60px] text-center">S.No</th>
+      <th>Policy Title</th>
+      <th>Policy Description</th>
+      <th>Is Published</th>
+      <th>Is Acknowledged</th>
+      <th>Acknowledged By</th>
+      <th>Acknowledged Date</th>
+      <th>Reason</th>
+      <th>Duration (Days)</th>
+      <th>Risk Rating</th>
+      <th>Exception Submission Date</th>
+      <th>Exception Approval Status</th>
+      <th>Exception Approved By</th>
+      <th>Approval Date</th>
+      <th>Admin Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let policy of policiesWithExceptions; let i = index">
+      <td class="text-center">{{ i + 1 }}</td>
+      <td>{{ policy.policyTitle }}</td>
+      <td>{{ policy.policyDescription }}</td>
+      <td>{{ policy.isPublishedStatus }}</td>
+      <td>{{ policy.isAcknowledgedStatus }}</td>
+      <td>{{ policy.acknowledgedBy }}</td>
+      <td>{{ policy.acknowledgedDate | date: 'MMMM d, y h:mm a' }}</td>
+      <td>{{ policy.reason }}</td>
+      <td>{{ policy.durationInDays }}</td>
+      <td>{{ policy.riskRating }}</td>
+      <td>{{ policy.exceptionSubmissionDate | date: 'MMMM d, y h:mm a' }}</td>
+      <td>{{ policy.exceptionApprovalStatus }}</td>
+      <td>{{ policy.exceptionApprovedBy }}</td>
+      <td>{{ policy.approvalDate | date: 'MMMM d, y h:mm a' }}</td>
+      <td>{{ policy.adminComments }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </div>
+</div>
