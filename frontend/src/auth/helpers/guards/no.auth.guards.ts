@@ -27,7 +27,7 @@ export class NoAuthGuard implements CanActivate {
   // canActivate
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this._authService.currentUserValue;
-    // console.log(currentUser)
+    // console.log(Role.User)
     if (!currentUser) {
       return true;
     }
@@ -39,7 +39,8 @@ export class NoAuthGuard implements CanActivate {
         ? ''
         : this._authService.getUser().userType[0];
     if (this.userType == Role.User)
-      this._router.navigate(['/dashboard/user-submissions']);
+      // console.log('navigating to user submissions'),
+      this._router.navigate(['/dashboard/new-submission']);
      else if (this.userType == Role.Admin) {
       this._router.navigate(['/dashboard/admin']);
     }
