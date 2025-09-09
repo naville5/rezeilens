@@ -241,14 +241,14 @@
 
 
                   <td class="text-center align-middle" *ngIf="userType === Role.Admin">
-                    <button (click)="openExceptionModal(exception.riskExceptionId, 'approve')"
+                    <button [disabled]="exception.isApproved !== 0" (click)="openExceptionModal(exception.riskExceptionId, 'approve')"
                       class="btn btn-sm btn-icon btn-clear btn-light">
                       <i class="ki-filled ki-notepad-edit"></i>
                     </button>
                   </td>
 
                   <td class="text-center align-middle" *ngIf="userType === Role.Admin">
-                    <button (click)="openExceptionModal(exception.riskExceptionId, 'deny')"
+                    <button [disabled]="exception.isApproved !== 0" (click)="openExceptionModal(exception.riskExceptionId, 'deny')"
                       class="btn btn-sm btn-icon btn-clear btn-light">
                       <i class="ki-filled ki-cross"></i>
                     </button>
@@ -286,8 +286,5 @@
 </div>
 <!-- end: container -->
 
-<app-exception-modal
-  #exceptionModal
-  [exceptionId]="selectedExceptionId"
-  (statusUpdated)="onExceptionUpdated()">
+<app-exception-modal #exceptionModal [exceptionId]="selectedExceptionId" (statusUpdated)="onExceptionUpdated()">
 </app-exception-modal>
